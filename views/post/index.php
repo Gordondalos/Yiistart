@@ -1,5 +1,5 @@
-Привет мир
+Привет индекс
 
 <?php
-debug($names)
+//debug($names)
 ?>
