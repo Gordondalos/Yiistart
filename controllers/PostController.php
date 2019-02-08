@@ -7,10 +7,7 @@ class PostController extends AppController {
 
     public function actionIndex(){
         $names = ['Ivanov', 'Petrov', 'Сидоров'];
-        $this->debug($names);
-//        $this->context->debug(Yii::$app)﻿;
-
-        return $this->render('index');
+        return $this->render('index', ['names' => $names]);
     }
 
 }
