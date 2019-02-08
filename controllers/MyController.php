@@ -1,9 +1,8 @@
 <?php
 
 namespace app\controllers;
-use yii\web\Controller;
 
-class MyController extends Controller
+class MyController extends AppController
 {
     /*
      * id передается через параметры
