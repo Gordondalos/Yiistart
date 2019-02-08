@@ -1,3 +1,5 @@
+<?php $this->title = 'Огого'?>
+
 <h1>Show action</h1>
 <button class="btn btn-success" id="btn">Кликни меня</button>
 
@@ -10,7 +12,7 @@ $('#btn').on('click', function(){
     console.log('клик');
     $.ajax({
     url: 'index.php?r=post/index',
-    method: 'GET',
+    method: 'POST',
     data: {'qwe':'123'},
     success: function(data) {
       console.log(data);
