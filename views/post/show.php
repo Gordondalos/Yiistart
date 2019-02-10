@@ -1,12 +1,24 @@
 <?php $this->title = 'Огого' ?>
 
+<?php
+use app\components\MyWidgets;
+?>
+
 <h1>Show action <?=$count?></h1>
 <button class="btn btn-success" id="btn">Кликни меня</button>
 
 <?php
-echo '<pre>';
-print_r($cats);
-echo '</pre>';
+//echo MyWidgets::widget(['name'=> 'Вася']);
+//?>
+
+<? MyWidgets::begin()?>
+<h1>привет бублик</h1>
+<? MyWidgets::end()?>
+
+<?php
+//echo '<pre>';
+//print_r($cats);
+//echo '</pre>';
 
 //echo count($cats[0]->products)
 ?>
