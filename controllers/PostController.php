@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\models\Category;
 use app\models\TestForm;
 use Yii;
 
@@ -42,7 +43,11 @@ class PostController extends AppController {
 
     public function actionShow() {
         //$this->layout = 'basic'; // установка шаблона для конкретной страницы
-        return $this->render('show');
+
+        // селект * из категорий
+        $cats = Category::find()->all();
+
+        return $this->render('show', compact('cats'));
     }
 
 }

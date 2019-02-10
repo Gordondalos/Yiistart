@@ -4,6 +4,12 @@
 <button class="btn btn-success" id="btn">Кликни меня</button>
 
 <?php
+echo '<pre>';
+print_r($cats);
+echo '</pre>';
+?>
+
+<?php
 // подключение только на в одном файле, также есть для стилей registerCSSFile
 //$this->registerJsFile('@web/js/my-script.js', ['depends' => 'yii\web\YiiAsset',]);
 
