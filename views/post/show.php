@@ -7,13 +7,16 @@
 echo '<pre>';
 print_r($cats);
 echo '</pre>';
+
+//echo count($cats[0]->products)
 ?>
+
 
 <?php
 echo '<br>';
-foreach ($cats as $index => $cat) {
-    echo '('.$index.')';
-    echo $cat['title'].'<br>';}
+//foreach ($cats->products as $index => $cat) {
+//    echo '('.$index.')';
+//    echo $cat['title'].'<br>';}
 ?>
 
 <?php
