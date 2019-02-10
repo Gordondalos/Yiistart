@@ -75,6 +75,18 @@ class PostController extends AppController {
         //$cats = Category::findOne(['parent' => 1]);
         //$cats = Category::findAll(['parent' => 1]);
 
+        // Запрос - но так неправильно и можно получить инекцию
+        $query = "Select * from category where title like '%ко%'";
+        $cats = Category::findBySql($query)->asArray()->all();
+
+        // чтобы избежать инекции то можно подстваить параметры
+        $query = "Select * from category where title like :search";
+        $cats = Category::findBySql($query, ['search'=> '%ко%'])->asArray()->all();
+
+
+
+
+
 
 
 
