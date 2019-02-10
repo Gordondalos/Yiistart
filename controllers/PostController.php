@@ -5,6 +5,7 @@ namespace app\controllers;
 use app\models\Category;
 use app\models\TestForm;
 use Yii;
+use yii\swiftmailer\Message;
 
 class PostController extends AppController {
 
@@ -26,10 +27,28 @@ class PostController extends AppController {
             $data = Yii::$app->request->post();
         }
 
-        $model = new TestForm();
+        $post = TestForm::findOne(11);// так получил
+
+        $post->name = 'новый пост'; // новые даныне
+        $post->email = '2@2.com';
+        $post->text = 'lorem ipsum';
+        $post->save(); // обновил
+
+        //$post -> delete() удалил
+        // saveAll и deleteAll удалить или сохранить несколько записей
+
+        //TestForm::deleteAll(['>', 'id', 20]); // если не указать в скобках удалит все
+
+
+        $model = new TestForm(); // если форму сделать вот так то будет инсерт, а если объект получен через find
+        // то мы уже получаем оъект типа эктив рекорд и будет update
+//        $model->name = 'Автор жжет';
+//        $model->email = 'gordondalos@gmail.com';
+//        $model->text = 'Автор жжет какой то новый текст';
+//        $model->save();
 
         if ($model->load( Yii::$app->request->post())) {
-            if ($model->validate()) {
+            if ($model->save()) {
                 Yii::$app->session->setFlash('success', 'Все проканало');
                 return $this->refresh(); // Обновление страницы скидывает даныне
             } else {

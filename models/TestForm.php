@@ -8,11 +8,19 @@
 namespace app\models;
 
 use yii\base\Model;
+use yii\db\ActiveRecord;
 
-class TestForm extends Model {
-    public $name;
-    public $email;
-    public $text;
+class TestForm extends ActiveRecord {
+
+    public static function tableName() {
+        return 'message';
+    }
+
+    // эти поля нужно заполнять толкь для того если бы используем класс модель
+    // для актив рекорд их указывать не нужно даныне не сохраняются
+//    public $name;
+//    public $email;
+//    public $text;
 
     // изменяем лейблы
     public function attributeLabels() {
@@ -32,10 +40,10 @@ class TestForm extends Model {
             ['email', 'string', 'min' => 5],
             ['name', 'string',
                 'min' => 2,
-                'max' => 5,
+                'max' => 255,
                 'tooShort' => 'ППЦ короктое имя - неподходит',
                 'tooLong' => 'Херасе, a можно покороче?'],
-            ['text', 'string', 'length' => [2, 5]],
+            ['text', 'string', 'length' => [2, 255]],
 
             ['text', 'myRule'],
 //            ['text', 'trim'],
@@ -45,7 +53,10 @@ class TestForm extends Model {
 
     // эта валидация сработает только на сервере
     public function myRule($attrs, $params) {
-        if(! in_array($this->$attrs, ['hello', 'world'])) {
+//        if(! in_array($this->$attrs, ['hello', 'world'])) {
+//            $this->addError($attrs, 'Валидация на сервере не прошла');
+//        }
+        if($attrs == '') {
             $this->addError($attrs, 'Валидация на сервере не прошла');
         }
     }
