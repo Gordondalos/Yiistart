@@ -47,7 +47,40 @@ class PostController extends AppController {
         // селект * из категорий
         $cats = Category::find()->all();
 
-        return $this->render('show', compact('cats'));
+        // сортировака по убыванию
+        $cats = Category::find()->orderBy(['id' => SORT_DESC])->all();
+
+        // достаем в формате массива
+        $cats = Category::find()->asArray()->all();
+
+        // WHERE
+        $cats = Category::find()->where(['parent' => 1])->asArray()->all();
+        $cats = Category::find()->where('parent=1')->asArray()->all();
+
+        // LIKE где тайтл лайкает ко
+        $cats = Category::find()->where(['like', 'title', 'ко'])->asArray()->all();
+
+        // где больше равно 2
+        $cats = Category::find()->where(['<=', 'id', 2])->asArray()->all();
+
+
+        $count = Category::find()->where('parent>0')->asArray()->count();
+
+        // так тоже можно но массив одномерный  и получает одну запись
+        $cats = Category::find()->where('parent>0')->asArray()->one();
+        // дай мне там гду родитель больше нуля лимитом 1
+        $cats = Category::find()->where('parent>0')->asArray()->limit(1)->all();
+
+        // тут массив получить не получится
+        //$cats = Category::findOne(['parent' => 1]);
+        //$cats = Category::findAll(['parent' => 1]);
+
+
+
+
+
+
+        return $this->render('show', compact('cats', 'count'));
     }
 
 }

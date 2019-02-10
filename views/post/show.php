@@ -1,19 +1,19 @@
 <?php $this->title = 'Огого' ?>
 
-<h1>Show action</h1>
+<h1>Show action <?=$count?></h1>
 <button class="btn btn-success" id="btn">Кликни меня</button>
 
 <?php
-//echo '<pre>';
-//print_r($cats);
-//echo '</pre>';
+echo '<pre>';
+print_r($cats);
+echo '</pre>';
 ?>
 
 <?php
 echo '<br>';
 foreach ($cats as $index => $cat) {
     echo '('.$index.')';
-    echo $cat->title.'<br>';}
+    echo $cat['title'].'<br>';}
 ?>
 
 <?php
