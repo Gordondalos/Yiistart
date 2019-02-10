@@ -23,6 +23,7 @@ class TestForm extends Model {
         ];
     }
 
+    // если не указывать правила валидации то поля не долетят до модели автоматом, нужно хотябы указать валидатор safe
     public function rules() {
         return [
 //            [['name', 'email'], 'required', 'message' => 'Поле обязательно' ],
@@ -37,14 +38,15 @@ class TestForm extends Model {
             ['text', 'string', 'length' => [2, 5]],
 
             ['text', 'myRule'],
-            ['text', 'trim'],
+//            ['text', 'trim'],
+            ['text', 'safe'],
         ];
     }
 
     // эта валидация сработает только на сервере
     public function myRule($attrs, $params) {
         if(! in_array($this->$attrs, ['hello', 'world'])) {
-            $this->addError($attrs, 'wrong');
+            $this->addError($attrs, 'Валидация на сервере не прошла');
         }
     }
 
