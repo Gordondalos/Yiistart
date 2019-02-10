@@ -31,6 +31,9 @@ if (Yii::$app->session->hasFlash('error')) {
 $form = ActiveForm::begin(['options' => ['id' => 'testForm']]);
 echo $form->field($model, 'name');
 echo $form->field($model, 'email')->input('email');
+?>
+<?= yii\jui\DatePicker::widget(['name' => 'attributeName']) ?>
+<?php
 echo $form->field($model, 'text')->textarea(['rows' => 5]);
 echo HTML::submitButton('Отправить', ['class' => 'btn btn-success']);
 
