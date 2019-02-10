@@ -1,19 +1,26 @@
-<?php $this->title = 'Огого'?>
+<?php $this->title = 'Огого' ?>
 
 <h1>Show action</h1>
 <button class="btn btn-success" id="btn">Кликни меня</button>
 
 <?php
-echo '<pre>';
-print_r($cats);
-echo '</pre>';
+//echo '<pre>';
+//print_r($cats);
+//echo '</pre>';
+?>
+
+<?php
+echo '<br>';
+foreach ($cats as $index => $cat) {
+    echo '('.$index.')';
+    echo $cat->title.'<br>';}
 ?>
 
 <?php
 // подключение только на в одном файле, также есть для стилей registerCSSFile
 //$this->registerJsFile('@web/js/my-script.js', ['depends' => 'yii\web\YiiAsset',]);
 
-$js=<<<JS
+$js = <<<JS
 $('#btn').on('click', function(){
     console.log('клик');
     $.ajax({
